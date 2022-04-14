@@ -7,6 +7,13 @@
   pointer-events: none;
 }
 
+.App-foxes {
+  height: 3rem;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -35,4 +42,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  font-size: calc(10px + 2vmin);
 }

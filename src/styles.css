@@ -1,0 +1,619 @@
+		* {
+			margin: 0px;
+			padding: 0px;
+			outline: none;
+			border: 0px;
+			overflow-y:hidden;
+			overflow-x: hidden;
+		}
+
+		body {
+		margin: 0;
+		}
+
+		button {
+		border-radius: 10px;
+		display: inline-block
+		color #e0ead9;
+		background-color:#787f73;
+		padding: 10px;
+		}
+
+		.ResourceButtons{
+		}
+
+		.ResourceGathered {
+		color: green;
+		border: 2px solid #000000;
+		text-align: right;
+		width: fit-content;
+		}
+
+		.ResourcePerSecond {
+		color: grey;
+		border: 2px solid #000000;
+		text-align: right;
+		}
+
+		#bronzeMined{
+		color: green;
+		border: 2px solid #000000;
+		}
+
+		#bronzeMinedPerSecond {
+		color: grey;
+		border: 2px solid #000000;
+		justify-content:center;
+		}
+
+		.container {
+		display: flex; /* or inline-flex */
+		}
+
+		.GatherResource-container {
+		  display: flex;
+		  background-color: green;
+		  flex-direction: column;
+		  align-items: stretch;
+			justify-content: center;
+			height: 100%;
+			width: 100%;
+		}
+
+		.GatherResource-container button{
+		  display: inline-flex;
+		  background-color: Grey;
+		  flex-direction: column;
+		  align-items: start;
+		  margin-left: 0.25rem;
+		  margin-right: 0.25rem;
+		  width: fit-content;
+			justify-content: center;
+		}
+
+		.GatherResource-container > div {
+			background-color: green;
+			margin: 10px;
+			padding: 10px;
+			font-size: 30px;
+			border: 1px solid black;
+			background-color:#b8c2d4;
+		}
+
+		.resource-container {
+		  display: inline-flex;
+		  flex-direction: row;
+		  align-items: center;
+
+		}
+
+		.resource-container button{
+		  display: inline-flex;
+		  width: fit-content;
+		}
+
+		.OptionsQuick {
+			display: inline-flex;
+			text-align: left;
+			align-items: left;
+			justify-content: left;
+			position: relative;
+			bottom: 0.1rem;
+			top: 0.1rem;
+			font-size: 1rem;
+		}
+
+		#footer {
+			display: block;
+		   position:absolute;
+		   bottom:0;
+		   width:100%;
+		   height:2rem;   /* Height of the footer */
+		   padding: 20px;
+		   background:#6cf;
+		   text-align:left;
+			 justify-content: flex-end;
+			}
+
+		#header {
+		   position: fixed;
+		   width:100%;
+		   height:0rem;   /* Height of the footer */
+		   padding: 20px;
+		   background:#948584;
+		   justify-content: left;
+		}
+
+		#Resources {
+			background-color: orange;
+			font-size: 1.4rem;
+		    margin-top:10px;
+			margin-left:10px;
+			border-style: solid;
+			border-right: 1px solid;
+			border-left: 1px solid;
+			border-top: 1px solid;
+			border-bottom: 1px solid;
+			border-color: black;
+			position: fixed;
+			top: 1.9rem;
+			left:-0.6rem;
+		}
+
+		.tabcontent {
+		  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+		}
+
+		@keyframes fadeEffect {
+			from {opacity: 0;}
+			to {opacity: 1;}
+		}
+
+		.active {
+		  background-color: #ccc;
+		}
+
+		.dnone {
+			display : none;
+		}
+
+		.dblock {
+			display: block;
+		}
+
+		.QuickOptionButtons {
+			text-align:left;
+			padding-left: 0.5rem;
+			width: 20rem;
+			justify-content: center;
+			display: inline flex;
+			flex-direction: ;
+		}
+
+		.tabHolder {
+			display: inline-block;
+			width: fit-content;
+			padding: 20px;
+			background:brown;
+			justify-content: center;
+			position: fixed;
+			top: 2.5rem;
+			left:50%;
+			transform: translate(-50%, 0);
+			text-align: center
+
+		}
+
+		.tab {
+		  overflow: hidden;
+		  background-color: green;
+		  display: inline-block;
+			padding: 1rem;
+
+		}
+
+		.tab button {
+			display: inline-block;
+			background-color: grey;
+			display: inline-flex;
+			outline: none;
+			cursor: pointer;
+			transition: 0.3s;
+			height: 3rem;
+
+		}
+
+		.tablinks button{
+		display: inline-block;
+		border: thick solid black;
+		font-size: 1rem;
+		}
+
+		#Gatherbutton{
+		margin-top: 0.6rem;
+		margin-bottom: 0.6rem;
+		margin-left: 0.6rem;
+		margin-right: 0.3rem;
+		}
+
+		#Buildingsbutton{
+		margin-top: 0.6rem;
+		margin-bottom: 0.6rem;
+		margin-left: 0.3rem;
+		margin-right: 0.3rem;
+		}
+
+		#Peoplebutton{
+		margin-top: 0.6rem;
+		margin-bottom: 0.6rem;
+		margin-left: 0.3rem;
+		margin-right: 0.3rem;
+		}
+
+		#Researchbutton{
+		margin-top: 0.6rem;
+		margin-bottom: 0.6rem;
+		margin-left: 0.3rem;
+		margin-right: 0.3rem;
+		}
+
+		#Religionbutton{
+		margin-top: 0.6rem;
+		margin-bottom: 0.6rem;
+		margin-left: 0.3rem;
+		margin-right: 0.6rem;
+		}
+
+
+		.tab button:hover {
+		  background-color: #ddd;
+		}
+
+		button:hover {
+		  background-color: #ddd;
+		}
+
+		#TopOfPageContainer {
+		position: fixed;
+		}
+
+		#gameVersion{
+		text-align: left;
+		margin-left: 0.1rem;
+		margin-top: -0.5rem
+
+		}
+
+	
+
+		.tab > .Hidden{
+		display: none;
+		}
+
+
+
+		.visibleblock{
+			display: block;
+			padding: 10px;
+		}
+
+		#Buildings{
+			background-color:grey;
+			text-align: left;
+			height:40rem;
+			flex-direction: row;
+		}
+
+		#BuildingsContainer{
+			background-color:green;
+			text-align: left;
+			height:100%;
+			width: 100%;
+			flex-direction: row;
+		}
+
+		.ResourceButtons{
+		display: inline-block;
+		}
+
+		#FoodProgressBar {
+		    width: 0;
+			background: #f78;
+			text-align: center;
+			overflow: hidden;
+			height:10%;
+		}
+		#FoodProgressBarContainer{
+			background-color: grey;
+			color: black;
+			font-size: 1.5rem;
+			text-align: left;
+			width: 93%;
+		}
+
+		.ui-widget {
+			background: gray;
+			border: 1px solid black;
+        }
+
+		.progress,
+		.progress:hover {
+			background: transparent;
+			padding: 0;
+			height: 30px;
+			width: 68px;
+		}
+
+		.MainInteractTitle {
+			text-align: left;
+		}
+
+		.flex-parent {
+		  display: flex;
+		}
+		.flex-child {
+		  flex: 1;
+		}
+
+	
+
+		#TimeStateButtonContainer{
+			display: inline-flex;
+			position: fixed;
+			top:0.2rem;
+			right:4rem;
+			height: 2rem;
+			}
+
+		.TimeStateButton{
+			display: inline-flex;
+			font-size: 1rem;
+		}
+
+		#MenuIcon{
+			right: 1rem;
+		}
+
+		#MenuDialog{
+			position: fixed;
+		}
+
+		.GameStats{
+			position: absolute;
+			left: 20rem;
+		}
+
+		#OptionsDialog{
+				background-color:light-grey;
+		}
+
+		.TimeColor{
+			color:#2ebf55
+		}
+
+		#Gather{
+			height: 100%;
+			width: 100%;
+			background-color: red;
+		}
+
+		#FoodProgressBar {
+		  width: 0;
+		  height: 2rem;
+		  background: #f78;
+		  text-align: center;
+		  overflow: hidden;
+		}
+		#FoodProgressBarContainer {
+		  width: 37.6rem;
+		  background: orange;
+		  text-align: center;
+		  overflow: hidden;
+			height: 2rem;
+		}
+
+		#WoodProgressBar {
+		  width: 0;
+		  height: 2rem;
+		  background: #f78;
+		  text-align: center;
+		  overflow: hidden;
+		}
+		#WoodProgressBarContainer {
+		  width: 37.6rem;
+		  background: orange;
+		  text-align: center;
+		  overflow: hidden;
+			height: 2rem;
+		}
+
+		#CopperProgressBar {
+		  width: 0;
+		  height: 2rem;
+		  background: #f78;
+		  text-align: center;
+		  overflow: hidden;
+		}
+		#CopperProgressBarContainer {
+		  width: 37.6rem;
+		  background: orange;
+		  text-align: center;
+		  overflow: hidden;
+			height: 2rem;
+		}
+
+		#BronzeProgressBar {
+		  width: 0;
+		  height: 2rem;
+		  background: #f78;
+		  text-align: center;
+		  overflow: hidden;
+		}
+		#BronzeProgressBarContainer {
+		  width: 37.6rem;
+		  background: orange;
+		  text-align: center;
+		  overflow: hidden;
+			height: 2rem;
+		}
+
+
+
+		button.active{
+			background-color:#ccc;
+		}
+
+		.active{
+			background-color:#ccc;
+		}
+
+
+		 #Tooltip {
+			background-color: #333;
+			color: white;
+			padding: 5px 10px;
+			border-radius: 4px;
+			font-size: 13px;
+			display: none;
+		  }
+
+		#Tooltip[data-show] {
+		  display: block;
+		background: #333;
+        color: white;
+        font-weight: bold;
+        padding: 4px 8px;
+        font-size: 13px;
+        border-radius: 4px;
+		}
+
+		#arrow,
+		#arrow::before {
+		  position: absolute;
+		  width: 8px;
+		  height: 8px;
+		  background: inherit;
+		}
+
+		#arrow {
+		  visibility: hidden;
+		}
+
+		#arrow::before {
+		  visibility: visible;
+		  content: '';
+		  transform: rotate(45deg);
+		}
+
+		#Tooltip[data-popper-placement^='top'] > #arrow {
+		  bottom: -1rem;
+		}
+
+		#Tooltip[data-popper-placement^='bottom'] > #arrow {
+		  top: -1rem;
+		}
+
+		#Tooltip[data-popper-placement^='left'] > #arrow {
+		  right: -1rem;
+		}
+
+		#Tooltip[data-popper-placement^='right'] > #arrow {
+		  left: -1rem;
+		}
+
+
+		.arrow {
+			position: absolute;
+			width: 0.75rem;
+			height: 0.75rem;
+			overflow: hidden;
+		}
+
+		.arrow::before {
+			content: '';
+			position: absolute;
+			width: 0.75rem;
+			height: 0.75rem;
+
+			background: ivory;
+			border: 1px solid black;
+		}
+
+		#Development {
+			position: absolute;
+			right: 4rem;
+			bottom: 20%;
+			display: flex;
+			width: fit-content;
+			height: 2rem;
+			display: inline-flex;
+			align-items: right;
+			background-color: brown;
+			border: thick solid black;
+			color: black;
+
+		}
+
+		#FooterContainer {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		#LoadButton {
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+		}
+
+
+		.inline-flex {
+			display: inline-flex;
+		}
+
+		#HutButton {
+			width: fit-content;
+			height: fit-content;
+		}
+
+		.tabTitle{
+			display: inline-flex;
+			margin-left: 1rem;
+			margin-right: 1rem;
+		}
+
+		.close{
+			margin-top: -0.5rem;
+			display: inline-flex;
+		}
+
+		#GatherHeaderContainer{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			background-color: green;
+		}
+
+		#BuildingsHeaderContainer{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			background-color: green;
+		}
+
+		
+		#BuildingsButtonsContainer{
+			display: flex;
+			margin-top: 1rem;
+			flex-direction: row;
+			justify-content: stretch;
+			align-items: stretch;
+			background-color: green;
+			height: 100%;
+		}
+
+		.MainInteract{
+			position: fixed;
+			left:50%; 
+			top:50%; 
+			transform: translate(-50%, -50%);
+			
+			display:flex;
+			align-items: center;
+			justify-content: center;
+
+			border-style: solid;
+			border-color: black;
+			border-width: thick;
+			text-align: center;
+			width: 41.8rem;
+			height: 42rem;
+			z-index: 1000;
+		}
+
+		.Hidden{
+			display: none;
+			}
+
+		.tabTitle, .close{
+			font-size: 2rem;
+		}

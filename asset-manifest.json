@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/IncrementalAge/static/css/main.a54adb14.css",
-    "main.js": "/IncrementalAge/static/js/main.8141cd4f.js",
+    "main.css": "/IncrementalAge/static/css/main.8e1fe8e3.css",
+    "main.js": "/IncrementalAge/static/js/main.a2bfe7dd.js",
     "static/js/787.306f05fe.chunk.js": "/IncrementalAge/static/js/787.306f05fe.chunk.js",
     "static/media/logo.svg": "/IncrementalAge/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
     "index.html": "/IncrementalAge/index.html",
-    "main.a54adb14.css.map": "/IncrementalAge/static/css/main.a54adb14.css.map",
-    "main.8141cd4f.js.map": "/IncrementalAge/static/js/main.8141cd4f.js.map",
+    "main.8e1fe8e3.css.map": "/IncrementalAge/static/css/main.8e1fe8e3.css.map",
+    "main.a2bfe7dd.js.map": "/IncrementalAge/static/js/main.a2bfe7dd.js.map",
     "787.306f05fe.chunk.js.map": "/IncrementalAge/static/js/787.306f05fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a54adb14.css",
-    "static/js/main.8141cd4f.js"
+    "static/css/main.8e1fe8e3.css",
+    "static/js/main.a2bfe7dd.js"
   ]
 }

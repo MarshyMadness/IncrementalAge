@@ -149,14 +149,6 @@ export default function App() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>Welcome To My First Game</p>
-
-          <button
-            id="Button"
-            type="button"
-            onClick={() => setCount((count) => count + 1)}
-          >
-            Forced Resource Refresh: {count}
-          </button>
         </header>
 
         <div id="footer">

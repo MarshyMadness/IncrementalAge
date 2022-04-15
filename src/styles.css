@@ -74,7 +74,7 @@
 		  display: inline-flex;
 		  background-color: Grey;
 		  flex-direction: column;
-		  align-items: start;
+		  align-items: flex-start;
 		  margin-left: 0.25rem;
 		  margin-right: 0.25rem;
 		  width: fit-content;
@@ -406,7 +406,6 @@
 		}
 
 		#Gather{
-			background-color: red;
 			justify-content: center;
 		}
 
@@ -657,14 +656,31 @@
 
 
 		@media only screen and (max-width: 360px), only screen and (max-device-width: 800x){
+			body{
+				background-color: gray;
+			}
 			.App {
 				display: flex;
 				justify-content: space-between;
+				height: 10%;
+				position: relative;
+	
+
+			}
+
+			.App-header {
+				display: none;
+				justify-content: space-between;
+				height: 1 rem;
+				position: absolute;
+				top: 18rem;
 
 			}
 
 			#Gather {
 				padding-top: 2rem;
+				width: 100%;
+				z-index: 10000;
 			}
 
 			#Resources {
@@ -687,7 +703,7 @@
 			.MainInteract{
 				overflow-y: scroll;
 				position: absolute;
-				top: 31rem;
+				top: 35rem;
 				display:flex;
 				align-items: center;
 				justify-content: center;
@@ -697,8 +713,8 @@
 				border-width: thick;
 				text-align: center;
 				width: 100%;
-				height: 50%;
-				z-index: 1000;
+				height: 30rem;
+				z-index: 10000;
 				background-color: green;
 			}
 
@@ -708,9 +724,18 @@
 				display: inline-flex;
 				width: 100%;
 				background:brown;
+				z-index: 10000;
 				
 
 	
+			}
+
+			#Buildings {
+				z-index: 10000;
+			}
+
+			#Gather {
+				z-index: 10000;
 			}
 
 			.tab {
@@ -728,6 +753,27 @@
 				background:#948584;
 				display: flex;
 				justify-content: center;
+			 }
+
+			 #footer {
+				 display: flex;
+				 flex-direction: column;
+				 position: absolute;
+				 bottom: 0;
+				 width: 100%;
+				 z-index: 10000;
+				 background-color: #6cf;
+			 }
+
+			 .FooterContainer {
+				 display:inline-flex;
+				 flex-direction: column;
+				 height: fit-content;
+				 background-color: #6cf;
+				 position: absolute;
+				 top: 60rem;
+				 width: 100%;
+				 z-index: 10000;
 			 }
 
 			 .App-header {

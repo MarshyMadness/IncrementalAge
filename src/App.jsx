@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import React from "react";
 import logo from "./logo.svg";
-import foxes from "./Graphics/foxes.png";
-import cats from "./Graphics/cats.png"
 import "./App.css";
 import { Gather } from "./maindata.js";
 import { Time, FixBorder } from "./maindata.js";
@@ -10,10 +8,12 @@ import * as Buttons from "./Buttons.jsx";
 import useKeyPress from "./hooks/useKeyPress.jsx";
 import ResourceTable from "./ResourceTable.jsx";
 import MainInteract from "./MainInteract.jsx";
-import { useSetState } from "@mantine/hooks";
+import { useSetState, Text, Paper } from "@mantine/core";
 import FoodPerClickUpgrade from "./buttons/foodPerClickUpgrade.jsx";
 import { startingGameData } from "./maindata.js";
 import ReactTooltip from "react-tooltip";
+import StatsCard from "./Stats.jsx";
+import TopOfPageContainer from "./TopOfPageContainer";
 
 window.addEventListener("load", (event) => {
   FixBorder();
@@ -25,6 +25,11 @@ export const LOCAL_STORAGE_KEY2 = "IncrementalGame.buildings";
 export default function App() {
   var [count, setCount] = useState(0);
   var [foodcount, setfoodCount] = useState(0);
+
+  const [BuildingButtonState, setBuildingButtonState] = useState({
+    Gather: false,
+    Buildings: false,
+  });
 
   var [gameData, setGameData] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {
@@ -45,19 +50,22 @@ export default function App() {
       bronze: 0,
       bronzePerClick: 1,
       bronzePerClickUpgradeNum: 0,
+      People: 0,
       TotalTime: 0,
       TotalTimeString: 0,
     }
   );
 
-  var [BuildingData, setBuildingData] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) || { 
-       PeopleButton: false,
-       HutButton: true
-  }  
+  var [BuildingData, setBuildingData] = useState(
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2)) || {
+      PeopleButton: false,
+      HutButton: true,
+      FirstCard: true,
+    }
   );
 
-  const food = localStorage.getItem(gameData["foodAmount"]);
-  const prevCountRef = useRef();
+  const [isClosed, setIsClosed] = useState(false);
+  const toggleClosed = (prev) => setIsClosed(!prev);
 
   useEffect(() => {}, []);
 
@@ -77,7 +85,6 @@ export default function App() {
       } else if (gameData.foodPerClickUpgradeNum === 2) {
         setGameData((prevData) => ({ ...prevData, FoodMultiplier: 0 }));
       }
-
     }, 1000);
     return () => {
       clearInterval(interval);
@@ -108,43 +115,13 @@ export default function App() {
   return (
     <>
       <div className="App">
-        <div id="TopOfPageContainer">
-          <div id="header">
-          <img src={cats} className="App-cats" alt="logo" />
-            <p id="gameVersion"> Game Version: {gameData.GameVersion} </p>
-            <img src={foxes} className="App-foxes" alt="logo" />
-          </div>
-
-          <div className="tabHolder">
-            <div className="tab">
-              <button
-                className="tablinks"
-                onClick={Buttons.GatherButton}
-                id="GatherButton"
-              >
-                Gather
-              </button>
-              <button
-                className="tablinks"
-                onClick={Buttons.BuildingsButton}
-                id="BuildingsButton"
-              >
-                Buildings
-              </button>
-              { BuildingData.PeopleButton ? <button className="tablinks" id="PeopleButton">
-                People
-              </button> : null }
-              
-              <button className="tablinks Hidden" id="ResearchButton">
-                Research
-              </button>
-              <button className="tablinks Hidden" id="ReligionButton">
-                Religion
-              </button>
-              <div id="TestButtonContainer"></div>
-            </div>
-          </div>
-        </div>
+        <TopOfPageContainer
+          gameData={gameData}
+          BuildingButtonState={BuildingButtonState}
+          setBuildingButtonState={setBuildingButtonState}
+          BuildingData={BuildingData}
+        />
+        {BuildingData.FirstCard ? <StatsCard gameData={gameData} /> : null}
 
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -153,24 +130,40 @@ export default function App() {
 
         <div id="footer">
           <div className="FooterContainer">
-              <button id="Save" onClick={() => Buttons.SaveGame({ gameData, setGameData, BuildingData, setBuildingData })}>Save</button>
-              <button
-                onClick={() => Buttons.ClearSaveButton({ gameData, setGameData, BuildingData, setBuildingData })}
-                id="ClearSaveButton"
-                className="OptionsQuick"
-              >
-                Clear Save
-              </button>
-              <span className="GameStats" id="Time">
-                Current Playtime: {gameData.TotalTimeString} seconds
-              </span>{" "} 
-              <span className="GameStats" id="TimeElapsedTotal">
-                {" "}
-                Total Elapsed Time:{" "}
-              </span>
-
-            
-
+            <button
+              id="Save"
+              onClick={() =>
+                Buttons.SaveGame({
+                  gameData,
+                  setGameData,
+                  BuildingData,
+                  setBuildingData,
+                })
+              }
+            >
+              Save
+            </button>
+            <button
+              onClick={() =>
+                Buttons.ClearSaveButton({
+                  gameData,
+                  setGameData,
+                  BuildingData,
+                  setBuildingData,
+                })
+              }
+              id="ClearSaveButton"
+              className="OptionsQuick"
+            >
+              Clear Save
+            </button>
+            <span className="GameStats" id="Time">
+              Current Playtime: {gameData.TotalTimeString} seconds
+            </span>{" "}
+            <span className="GameStats" id="TimeElapsedTotal">
+              {" "}
+              Total Elapsed Time:{" "}
+            </span>
             <div id="Development">
               <p>
                 <a
@@ -195,7 +188,14 @@ export default function App() {
           </div>
         </div>
         <ResourceTable gameData={gameData} />
-        <MainInteract gameData={gameData} setGameData={setGameData} BuildingData={BuildingData} setBuildingData={setBuildingData}/>
+        <MainInteract
+          gameData={gameData}
+          setGameData={setGameData}
+          BuildingData={BuildingData}
+          setBuildingData={setBuildingData}
+          toggleClosed={toggleClosed}
+          className={isClosed ? "hidden" : "active"}
+        />
       </div>
     </>
   );

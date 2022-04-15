@@ -1,14 +1,19 @@
 import React from "react";
-import { useState } from "react"
+import { useState, useRef } from "react";
 import * as Buttons from "./Buttons.jsx";
 import "./styles.css";
 import FoodPerClickUpgrade from "./buttons/foodPerClickUpgrade.jsx";
 import { Tooltip, Button } from "@mantine/core";
 
-
-
-export default function MainInteract({ gameData, setGameData, BuildingData, setBuildingData }) {
+export default function MainInteract({
+  gameData,
+  setGameData,
+  BuildingData,
+  setBuildingData,
+  toggleClosed,
+}) {
   const [show, setShow] = useState(true);
+  const BuildingsButtonRef = useRef(null);
 
   return (
     <div id="MainInteract" className="MainInteract Hidden">
@@ -23,14 +28,31 @@ export default function MainInteract({ gameData, setGameData, BuildingData, setB
           </span>
         </div>
         <div id="BuildingsButtonsContainer">
-
-          { BuildingData.HutButton ?    <Tooltip label="120 Food, 80 Wood, 40 Copper" position="bottom" withArrow zIndex={5000}>
-            <Button variant="solid" color="red" size="x2" className="BuildingsButtons" onClick={() => Buttons.HutButton({BuildingData, setBuildingData})}>
-              Hut
-            </Button>
-          </Tooltip> : null }
-          
-          
+          {BuildingData.HutButton ? (
+            <Tooltip
+              label="120 Food, 80 Wood, 40 Copper"
+              position="bottom"
+              withArrow
+              zIndex={5000}
+            >
+              <Button
+                variant="solid"
+                color="red"
+                size="x2"
+                className="BuildingsButtons"
+                onClick={() =>
+                  Buttons.HutButton({
+                    gameData,
+                    setGameData,
+                    BuildingData,
+                    setBuildingData,
+                  })
+                }
+              >
+                Hut
+              </Button>
+            </Tooltip>
+          ) : null}
         </div>
       </div>
 
@@ -59,7 +81,7 @@ export default function MainInteract({ gameData, setGameData, BuildingData, setB
       <div id="Gather" className="tabcontent Hidden">
         <div id="GatherHeaderContainer">
           <h3 className="tabTitle">Gather</h3>
-          <span onClick={Buttons.CloseButton} className="tabTitle close">
+          <span onClick={toggleClosed} className="tabTitle close">
             [x]
           </span>
         </div>
@@ -81,7 +103,8 @@ export default function MainInteract({ gameData, setGameData, BuildingData, setB
               id="foodPerClickUpgrade Hidden"
               onClick={() => FoodPerClickUpgrade({ gameData, setGameData })}
             >
-              Upgrade Hatchet (Currently Level {gameData.foodPerClickUpgradeNum}) Cost: {gameData.foodPerClickCost} wood
+              Upgrade Hatchet (Currently Level {gameData.foodPerClickUpgradeNum}
+              ) Cost: {gameData.foodPerClickCost} wood
             </button>
           </div>
 
@@ -99,7 +122,8 @@ export default function MainInteract({ gameData, setGameData, BuildingData, setB
               Cut Wood
             </button>
             <button id="woodPerClickUpgrade Hidden">
-              Upgrade Hatchet (Currently Level {gameData.woodPerClickUpgradeNum}) Cost: {gameData.woodPerClickCost} wood
+              Upgrade Hatchet (Currently Level {gameData.woodPerClickUpgradeNum}
+              ) Cost: {gameData.woodPerClickCost} wood
             </button>
           </div>
 
@@ -114,7 +138,8 @@ export default function MainInteract({ gameData, setGameData, BuildingData, setB
           >
             <button id="mineCopperButton">Mine Copper</button>
             <button id="copperperClickUpgrade Hidden">
-              Upgrade Copper Pickaxe (Currently Level 1) <br></br> Cost: 10 copper
+              Upgrade Copper Pickaxe (Currently Level 1) <br></br> Cost: 10
+              copper
             </button>
           </div>
 

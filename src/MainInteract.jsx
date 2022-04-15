@@ -4,9 +4,12 @@ import * as Buttons from "./Buttons.jsx";
 import "./styles.css";
 import FoodPerClickUpgrade from "./buttons/foodPerClickUpgrade.jsx";
 import { Tooltip, Button } from "@mantine/core";
-import ReactTooltip from "react-tooltip"
 
-export default function MainInteract({ gameData, setGameData }) {
+
+
+export default function MainInteract({ gameData, setGameData, BuildingData, setBuildingData }) {
+  const [show, setShow] = useState(true);
+
   return (
     <div id="MainInteract" className="MainInteract Hidden">
       <div
@@ -20,15 +23,12 @@ export default function MainInteract({ gameData, setGameData }) {
           </span>
         </div>
         <div id="BuildingsButtonsContainer">
-        <Tooltip
-          opened
-          label="Tooltip"
-        >
-          <Button variant="outline" color="gray" size="xl">
-            With tooltip
-          </Button>
-        </Tooltip>
 
+          { BuildingData.HutButton ?    <Tooltip label="120 Food, 80 Wood, 40 Copper" position="bottom" withArrow zIndex={5000}>
+            <Button variant="solid" color="red" size="x2" className="BuildingsButtons" onClick={() => Buttons.HutButton({BuildingData, setBuildingData})}>
+              Hut
+            </Button>
+          </Tooltip> : null }
           
           
         </div>
@@ -81,7 +81,7 @@ export default function MainInteract({ gameData, setGameData }) {
               id="foodPerClickUpgrade Hidden"
               onClick={() => FoodPerClickUpgrade({ gameData, setGameData })}
             >
-              Upgrade Hatchet (Currently Level 1) Cost: 25 wood
+              Upgrade Hatchet (Currently Level {gameData.foodPerClickUpgradeNum}) Cost: {gameData.foodPerClickCost} wood
             </button>
           </div>
 
@@ -99,7 +99,7 @@ export default function MainInteract({ gameData, setGameData }) {
               Cut Wood
             </button>
             <button id="woodPerClickUpgrade Hidden">
-              Upgrade Hatchet (Currently Level 1) Cost: 10 wood
+              Upgrade Hatchet (Currently Level {gameData.woodPerClickUpgradeNum}) Cost: {gameData.woodPerClickCost} wood
             </button>
           </div>
 
@@ -114,7 +114,7 @@ export default function MainInteract({ gameData, setGameData }) {
           >
             <button id="mineCopperButton">Mine Copper</button>
             <button id="copperperClickUpgrade Hidden">
-              Upgrade Copper Pickaxe (Currently Level 1) Cost: 10 copper
+              Upgrade Copper Pickaxe (Currently Level 1) <br></br> Cost: 10 copper
             </button>
           </div>
 

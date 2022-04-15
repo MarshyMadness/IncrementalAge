@@ -8,11 +8,17 @@
 }
 
 .App-foxes {
-  height: 3rem;
+  height: 2rem;
   pointer-events: none;
-  display: inline-flex;
-  align-items: center;
+  padding-left: 1rem;
 }
+
+.App-cats {
+  height: 2rem;
+  pointer-events: none;
+  padding-right: 1rem;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -47,3 +53,4 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+

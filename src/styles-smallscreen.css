@@ -5,22 +5,14 @@
 			border: 0px;
 		}
 
-		body, html {
-			margin: 0;
-			padding: 0;
-			width: 100%;
-			height: 100%;
-			box-sizing: border-box;
-		}
-
-		* {
-			box-sizing: inherit;
+		body {
+		margin: 0;
 		}
 
 		button {
 		border-radius: 10px;
-		display: inline-block;
-		color: #e0ead9;
+		display: inline-block
+		color #e0ead9;
 		background-color:#787f73;
 		padding: 10px;
 		}
@@ -54,10 +46,6 @@
 
 		.container {
 		display: flex; /* or inline-flex */
-		}
-
-		#Time{
-		 
 		}
 
 		.GatherResource-container {
@@ -114,37 +102,16 @@
 		}
 
 		#footer {
+			display: block;
 		   position:absolute;
-		   bottom: 0;
-		   left:0;
+		   bottom:0;
 		   width:100%;
-		   height:4rem;   /* Height of the footer */
+		   height:2rem;   /* Height of the footer */
+		   padding: 20px;
 		   background:#6cf;
 		   text-align:left;
-
-			display: inline-flex;
-			flex-direction: row;
-			justify-content: space-between;
-			flex: 0 auto;
-		
-		}
-
-		.FooterContainer {
-			position:absolute;
-			bottom: 0;
-			left:0;
-			width:100%;
-			height:4rem;   /* Height of the footer */
-			text-align:left;
- 
-			display: inline-flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			flex: 0 auto auto;
-			padding-right: 1rem;
-			padding-left: 1rem;
-		 }
+			 justify-content: flex-end;
+			}
 
 		#header {
 		   position: fixed;
@@ -152,26 +119,7 @@
 		   height:0rem;   /* Height of the footer */
 		   padding: 20px;
 		   background:#948584;
-		   display: inline-flex;
-		   justify-content: center;
-		   align-items: center;
-		}
-
-		#Resources {
-			background-color: orange;
-			font-size: 1.4rem;
-		    margin-top:10px;
-			margin-left:10px;
-			border-style: solid;
-			border-right: 1px solid;
-			border-left: 1px solid;
-			border-top: 1px solid;
-			border-bottom: 1px solid;
-			border-color: black;
-			position: fixed;
-			top: 1.9rem;
-			left:-0.6rem;
-			z-index: 10000;
+		   justify-content: left;
 		}
 
 		.tabcontent {
@@ -213,6 +161,7 @@
 			position: fixed;
 			top: 2.5rem;
 			left:50%;
+			width: 100%;
 			transform: translate(-50%, 0);
 			text-align: center
 
@@ -394,7 +343,8 @@
 		}
 
 		.GameStats{
-			margin-left: 2rem;
+			position: absolute;
+			left: 20rem;
 		}
 
 		#OptionsDialog{
@@ -553,6 +503,9 @@
 		}
 
 		#Development {
+			position: absolute;
+			right: 4rem;
+			bottom: 20%;
 			display: flex;
 			width: fit-content;
 			height: 2rem;
@@ -562,6 +515,12 @@
 			border: thick solid black;
 			color: black;
 
+		}
+
+		#FooterContainer {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
 		}
 
 		#LoadButton {
@@ -633,6 +592,11 @@
 			background-color: green;
 		}
 
+		#TopOfPageContainer {
+			position: absolute;
+			width: 100%;
+			}
+
 		.Hidden{
 			display: none;
 			}
@@ -647,102 +611,4 @@
 
 		.mantine {
 			height: 100%;
-		}
-
-		#ClearSaveButton {
-			height: fit-content;
-			width: fit-content;
-		}
-
-
-
-		@media only screen and (max-width: 360px), only screen and (max-device-width: 800x){
-			.App {
-				display: flex;
-				justify-content: space-between;
-
-			}
-
-			#Gather {
-				padding-top: 2rem;
-			}
-
-			#Resources {
-				position: absolute;
-
-				background-color: orange;
-				font-size: 1.4rem;
-				margin-top:10px;
-				margin-left:10px;
-				border-style: solid;
-				border-right: 1px solid;
-				border-left: 1px solid;
-				border-top: 1px solid;
-				border-bottom: 1px solid;
-				border-color: black;
-				
-				width: 100%;
-			}
-
-			.MainInteract{
-				overflow-y: scroll;
-				position: absolute;
-				top: 31rem;
-				display:flex;
-				align-items: center;
-				justify-content: center;
-	
-				border-style: solid;
-				border-color: black;
-				border-width: thick;
-				text-align: center;
-				width: 100%;
-				height: 50%;
-				z-index: 1000;
-				background-color: green;
-			}
-
-			.tabHolder {
-				position: absolute;
-				top: 11rem;
-				display: inline-flex;
-				width: 100%;
-				background:brown;
-				
-
-	
-			}
-
-			.tab {
-				background-color: green;
-				display: inline-flex;
-				padding: 1rem;
-				width: fit-content;	
-				justify-content: flex-start;
-			  }
-
-			  #header {
-				width:100%;
-				height:1rem;   /* Height of the footer */
-				padding: 20px;
-				background:#948584;
-				display: flex;
-				justify-content: center;
-			 }
-
-			 .App-header {
-				 width: 100%;
-			 }
-
-			 #TopOfPageContainer {
-				 position: absolute;
-				 left: 0;
-				 justify-content: center;
-				 width: 100%;
-				}
-
-			.Hidden{
-				display: none;
-				}
-
 		}

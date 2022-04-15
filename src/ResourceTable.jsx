@@ -37,7 +37,7 @@ export default function ResourceTable( {gameData} ) {
         <th id="bronzeMinedPerSecond Hidden" className="PerSecond"></th>
       </tr>
   </tbody>
-    </table> <br></br>
+    </table>
 </div>
   )
 }

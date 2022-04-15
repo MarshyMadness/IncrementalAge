@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/IncrementalAge/static/css/main.8e1fe8e3.css",
-    "main.js": "/IncrementalAge/static/js/main.9042d570.js",
+    "main.css": "/IncrementalAge/static/css/main.5c46db75.css",
+    "main.js": "/IncrementalAge/static/js/main.06a932ba.js",
     "static/js/787.306f05fe.chunk.js": "/IncrementalAge/static/js/787.306f05fe.chunk.js",
+    "static/media/cats.png": "/IncrementalAge/static/media/cats.2fed6ad6a11745c3bd0f.png",
+    "static/media/foxes.png": "/IncrementalAge/static/media/foxes.d084ee4468250c9b178a.png",
     "static/media/logo.svg": "/IncrementalAge/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
     "index.html": "/IncrementalAge/index.html",
-    "main.8e1fe8e3.css.map": "/IncrementalAge/static/css/main.8e1fe8e3.css.map",
-    "main.9042d570.js.map": "/IncrementalAge/static/js/main.9042d570.js.map",
+    "main.5c46db75.css.map": "/IncrementalAge/static/css/main.5c46db75.css.map",
+    "main.06a932ba.js.map": "/IncrementalAge/static/js/main.06a932ba.js.map",
     "787.306f05fe.chunk.js.map": "/IncrementalAge/static/js/787.306f05fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e1fe8e3.css",
-    "static/js/main.9042d570.js"
+    "static/css/main.5c46db75.css",
+    "static/js/main.06a932ba.js"
   ]
 }

@@ -3,6 +3,8 @@ import { useState, useRef } from "react";
 import * as Buttons from "./Buttons.jsx";
 import "./styles.css";
 import FoodPerClickUpgrade from "./buttons/foodPerClickUpgrade.jsx";
+import woodPerClickUpgrade from "./buttons/woodPerClickUpgrade.jsx";
+import copperPerClickUpgrade from "./buttons/copperPerClickUpgrade.jsx";
 import { Tooltip, Button } from "@mantine/core";
 
 export default function MainInteract({
@@ -11,22 +13,39 @@ export default function MainInteract({
   BuildingData,
   setBuildingData,
   toggleClosed,
+  isClosed,
+  toggleClick,
+  isClicked,
+  toggleClickedGather,
+  isClickedGather,
+  toggleClickedBuildings,
+  isClickedBuildings,
+  toggleClickedPeople,
+  isClickedPeople,
 }) {
   const [show, setShow] = useState(true);
   const BuildingsButtonRef = useRef(null);
 
   return (
-    <div id="MainInteract" className="MainInteract Hidden">
+    <div
+      id="MainInteract"
+      className={`MainInteract ${
+        isClickedGather == false && isClickedBuildings == false ? "Hidden" : ""
+      }`}
+    >
       <div
         id="BuildingsContainer"
-        className="tabcontent MainInteractTitle Hidden"
+        className={`tabcontent MainInteractTitle ${
+          !isClickedBuildings ? "Hidden" : ""
+        }`}
       >
         <div id="BuildingsHeaderContainer">
           <h1 className="tabTitle">Buildings</h1>
-          <span onClick={Buttons.CloseButton} className="tabTitle close">
+          <span onClick={toggleClickedBuildings} className="tabTitle close">
             [x]
           </span>
         </div>
+
         <div id="BuildingsButtonsContainer">
           {BuildingData.HutButton ? (
             <Tooltip
@@ -56,16 +75,22 @@ export default function MainInteract({
         </div>
       </div>
 
-      <div id="People" className="tabcontent MainInteractTitle Hidden">
-        <span className="close" onClick={Buttons.CloseButton}>
-          [x]
-        </span>
-        <h3>People</h3>
-        <p>Placeholder for the people.</p>
+      <div>
+        <div
+          id="People"
+          className={`tabcontent MainInteractTitle ${
+            !isClickedPeople ? "Hidden" : ""
+          }`}
+        >
+          <span className="close" onClick={toggleClosed}>
+            [x]
+          </span>
+          <h3>People</h3>
+          <p>Placeholder for the people.</p>
+        </div>
       </div>
-
       <div id="Research" className="tabcontent MainInteractTitle Hidden">
-        <span className="close" onClick={Buttons.CloseButton}>
+        <span className="close" onClick={toggleClosed}>
           [x]
         </span>
         <h3>Research</h3>
@@ -77,11 +102,15 @@ export default function MainInteract({
         <h3>Religion</h3>
         <p>Placeholder for Religion.</p>
       </div>
-
-      <div id="Gather" className="tabcontent Hidden">
+      <div
+        id="Gather"
+        className={`tabcontent MainInteractTitle ${
+          !isClickedGather ? "Hidden" : ""
+        }`}
+      >
         <div id="GatherHeaderContainer">
           <h3 className="tabTitle">Gather</h3>
-          <span onClick={toggleClosed} className="tabTitle close">
+          <span onClick={toggleClickedGather} className="tabTitle close">
             [x]
           </span>
         </div>
@@ -103,8 +132,8 @@ export default function MainInteract({
               id="foodPerClickUpgrade Hidden"
               onClick={() => FoodPerClickUpgrade({ gameData, setGameData })}
             >
-              Upgrade Hatchet (Currently Level {gameData.foodPerClickUpgradeNum}
-              ) Cost: {gameData.foodPerClickCost} wood
+              Upgrade Bow (Currently Level {gameData.foodPerClickUpgradeNum})
+              Cost: {gameData.foodPerClickCost} wood
             </button>
           </div>
 
@@ -121,9 +150,12 @@ export default function MainInteract({
             >
               Cut Wood
             </button>
-            <button id="woodPerClickUpgrade Hidden">
+            <button
+              id="woodPerClickUpgrade Hidden"
+              onClick={() => woodPerClickUpgrade({ gameData, setGameData })}
+            >
               Upgrade Hatchet (Currently Level {gameData.woodPerClickUpgradeNum}
-              ) Cost: {gameData.woodPerClickCost} wood
+              ) Cost: {gameData.woodPerClickCost} Copper
             </button>
           </div>
 
@@ -137,9 +169,14 @@ export default function MainInteract({
             }
           >
             <button id="mineCopperButton">Mine Copper</button>
-            <button id="copperperClickUpgrade Hidden">
-              Upgrade Copper Pickaxe (Currently Level 1) <br></br> Cost: 10
-              copper
+            <button
+              id="copperperClickUpgrade Hidden"
+              onClick={() => copperPerClickUpgrade({ gameData, setGameData })}
+            >
+              Upgrade Pickaxe (Currently Level{" "}
+              {gameData.copperPerClickUpgradeNum}) Cost:{" "}
+              {gameData.copperPerClickCost} Copper and{" "}
+              {gameData.copperPerClickCost} Wood
             </button>
           </div>
 

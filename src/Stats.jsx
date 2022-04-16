@@ -7,10 +7,10 @@ import {
   Group,
   Badge,
   Paper,
+  Button,
 } from "@mantine/core";
 import icons8kawaiisteak96 from "./Graphics/KawaiiSteak/icons8kawaiisteak96.png";
 import icons8person80 from "./Graphics/icons8person80.png";
-import { gameData } from "./maindata";
 
 const ICON_SIZE = 65;
 const MAX_FOOD = 120;
@@ -37,7 +37,31 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function StatsCard({ gameData }) {
+export function CompleteBar({ gameData, setGameData, setBuildingData }) {
+  if (
+    gameData.foodAmount >= 120 &&
+    gameData.wood >= 80 &&
+    gameData.copper >= 40
+  ) {
+    var prevfoodAmount = gameData.foodAmount;
+    var prevwood = gameData.wood;
+    var prevcopper = gameData.copper;
+    setGameData((prevData) => ({ ...prevData, People: 1 }));
+    setGameData((prevData) => ({
+      ...prevData,
+      foodAmount: prevfoodAmount - 120,
+    }));
+    setGameData((prevData) => ({ ...prevData, wood: prevwood - 80 }));
+    setGameData((prevData) => ({ ...prevData, copper: prevcopper - 40 }));
+    setGameData((prevData) => ({ ...prevData, People: 1 }));
+    setBuildingData((prevData) => ({ ...prevData, PeopleButton: true }));
+    setBuildingData((prevData) => ({ ...prevData, FirstCard: false }));
+    console.log(gameData.People);
+  } else {
+  }
+}
+
+export default function StatsCard({ gameData, setGameData, setBuildingData }) {
   const { classes } = useStyles();
   var ProgressAmount = (
     ((Math.min(MAX_FOOD, gameData.foodAmount) +
@@ -46,7 +70,6 @@ export default function StatsCard({ gameData }) {
       (MAX_FOOD + MAX_WOOD + MAX_COPPER)) *
     100
   ).toFixed(0);
-
   return (
     <Paper
       id="FirstCard"
@@ -88,6 +111,15 @@ export default function StatsCard({ gameData }) {
           {gameData.copper} / {MAX_COPPER} Copper
         </Text>
       </Group>
+
+      <Button
+        width="fit-content"
+        style={{ height: "3rem", marginTop: "1rem" }}
+        className={``}
+        onClick={() => CompleteBar({ gameData, setGameData, setBuildingData })}
+      >
+        Complete
+      </Button>
     </Paper>
   );
 }

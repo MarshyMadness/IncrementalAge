@@ -540,7 +540,7 @@ button.active {
   border-color: black;
   border-width: thick;
   text-align: center;
-  width: 41.8rem;
+  width: 46rem;
   height: 42rem;
   z-index: 1000;
   background-color: green;
@@ -557,6 +557,11 @@ button.active {
 
 .BuildingsButtons {
   margin: 1rem;
+}
+
+#cheat {
+  position: absolute;
+  right: 1rem;
 }
 
 .mantine {
@@ -595,7 +600,7 @@ button.active {
   .App-header {
     display: none;
     justify-content: space-between;
-    height: 1 rem;
+    height: 80%;
     position: absolute;
     top: 18rem;
   }
@@ -691,7 +696,7 @@ button.active {
     height: fit-content;
     background-color: #6cf;
     position: absolute;
-    top: 60rem;
+    top: 110rem;
     width: 100%;
     z-index: 10000;
   }
@@ -705,6 +710,23 @@ button.active {
     left: 0;
     justify-content: center;
     width: 100%;
+  }
+
+  #FirstCard {
+    position: absolute;
+    top: 70rem;
+    left: 1.2rem;
+    height: fit-content;
+    width: 90%;
+  }
+
+  body {
+    background-image: url("./Graphics/backgroundimgmobile.webp"),
+      url("./Graphics/backgroundimgmobile2.webp");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
   }
 
   .Hidden {

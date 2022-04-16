@@ -8,12 +8,48 @@ import * as Buttons from "./Buttons.jsx";
 import useKeyPress from "./hooks/useKeyPress.jsx";
 import ResourceTable from "./ResourceTable.jsx";
 import MainInteract from "./MainInteract.jsx";
-import { useSetState, Text, Paper } from "@mantine/core";
+import { useSetState, Text, Paper, Button } from "@mantine/core";
 import FoodPerClickUpgrade from "./buttons/foodPerClickUpgrade.jsx";
 import { startingGameData } from "./maindata.js";
 import ReactTooltip from "react-tooltip";
 import StatsCard from "./Stats.jsx";
 import TopOfPageContainer from "./TopOfPageContainer";
+import backgroundimg from "./Graphics/background.jpg";
+
+export const StartingGameDataArray = {
+  GameVersion: "v0.0.6",
+  foodAmount: 0,
+  foodPerClick: 1,
+  foodPerClickCost: 25,
+  foodPerClickUpgradeNum: 0,
+  FoodMultiplier: 0,
+  FoodAutomateSpeed: 0,
+
+  wood: 0,
+  woodPerClick: 1,
+  woodPerClickCost: 25,
+  woodPerClickUpgradeNum: 0,
+  woodMultiplier: 0,
+  woodAutomateSpeed: 0,
+
+  copper: 0,
+  copperPerClick: 1,
+  copperPerClickCost: 50,
+  copperPerClickUpgradeNum: 0,
+  copperMultiplier: 0,
+  copperAutomateSpeed: 0,
+
+  bronze: 0,
+  bronzePerClick: 1,
+  bronzePerClickCost: 50,
+  bronzePerClickUpgradeNum: 0,
+  bronzeMultiplier: 0,
+  bronzeAutomateSpeed: 0,
+
+  People: 0,
+  TotalTime: 0,
+  TotalTimeString: 0,
+};
 
 window.addEventListener("load", (event) => {
   FixBorder();
@@ -33,26 +69,7 @@ export default function App() {
 
   var [gameData, setGameData] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {
-      GameVersion: "v0.0.6",
-      foodAmount: 0,
-      foodPerClick: 1,
-      foodPerClickCost: 25,
-      foodPerClickUpgradeNum: 0,
-      FoodMultiplier: 0,
-      FoodAutomateSpeed: 0,
-      wood: 0,
-      woodPerClick: 1,
-      woodPerClickCost: 25,
-      copper: 0,
-      copperPerClick: 1,
-      copperPerClickCost: 25,
-      copperPerClickUpgradeNum: 0,
-      bronze: 0,
-      bronzePerClick: 1,
-      bronzePerClickUpgradeNum: 0,
-      People: 0,
-      TotalTime: 0,
-      TotalTimeString: 0,
+      StartingGameDataArray,
     }
   );
 
@@ -64,11 +81,30 @@ export default function App() {
     }
   );
 
-  const [isClosed, setIsClosed] = useState(false);
-  const toggleClosed = (prev) => setIsClosed(!prev);
+  //Code for Open and Active States
+  var [isClosed, setIsClosed] = useState(false);
+  const toggleClosed = () => setIsClosed((prev) => !prev);
 
-  useEffect(() => {}, []);
+  var [isClicked, setIsClicked] = useState(false);
+  const toggleIsClicked = () => {
+    setIsClickedGather(false);
+    setIsClickedBuildings(false);
+    setIsClickedPeople(false);
+  };
 
+  var [isClickedGather, setIsClickedGather] = useState(false);
+  const toggleClickedGather = () => {
+    setIsClickedGather((prev) => !prev);
+    console.log(isClickedGather);
+  };
+
+  var [isClickedBuildings, setIsClickedBuildings] = useState(false);
+  const toggleClickedBuildings = () => setIsClickedBuildings((prev) => !prev);
+
+  var [isClickedPeople, setIsClickedPeople] = useState(false);
+  const toggleClickedPeople = () => setIsClickedPeople((prev) => !prev);
+
+  //Set Base Food Multiplier
   let BaseFoodMultiplier = 0;
 
   useEffect(() => {
@@ -92,7 +128,7 @@ export default function App() {
   }, [gameData.foodAmount]);
 
   useKeyPress("Escape", () => {
-    Buttons.CloseButton();
+    toggleIsClicked();
   });
 
   useEffect(() => {
@@ -120,10 +156,30 @@ export default function App() {
           BuildingButtonState={BuildingButtonState}
           setBuildingButtonState={setBuildingButtonState}
           BuildingData={BuildingData}
+          isClicked={isClicked}
+          toggleIsClicked={toggleIsClicked}
+          toggleClickedGather={toggleClickedGather}
+          isClickedGather={isClickedGather}
+          toggleClickedBuildings={toggleClickedBuildings}
+          isClickedBuildings={isClickedBuildings}
+          toggleClickedPeople={toggleClickedPeople}
+          isClickedPeople={isClickedPeople}
         />
-        {BuildingData.FirstCard ? <StatsCard gameData={gameData} /> : null}
+        {BuildingData.FirstCard ? (
+          <StatsCard
+            gameData={gameData}
+            setGameData={setGameData}
+            setBuildingData={setBuildingData}
+          />
+        ) : null}
 
-        <header className="App-header">
+        <header
+          className="App-header"
+          style={{
+            backgroundImage: `url(${backgroundimg})`,
+            backgroundSize: "cover",
+          }}
+        >
           <img src={logo} className="App-logo" alt="logo" />
           <p>Welcome To My First Game</p>
         </header>
@@ -193,7 +249,14 @@ export default function App() {
           setGameData={setGameData}
           BuildingData={BuildingData}
           setBuildingData={setBuildingData}
-          toggleClosed={toggleClosed}
+          toggleClickedGather={toggleClickedGather}
+          isClicked={isClicked}
+          toggleIsClicked={toggleIsClicked}
+          isClickedGather={isClickedGather}
+          toggleClickedBuildings={toggleClickedBuildings}
+          isClickedBuildings={isClickedBuildings}
+          toggleClickedPeople={toggleClickedPeople}
+          isClickedPeople={isClickedPeople}
           className={isClosed ? "hidden" : "active"}
         />
       </div>

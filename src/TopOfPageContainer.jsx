@@ -9,6 +9,14 @@ export default function TopOfPageContainer({
   BuildingButtonState,
   setBuildingButtonState,
   BuildingData,
+  toggleIsClicked,
+  isClicked,
+  toggleClickedGather,
+  isClickedGather,
+  toggleClickedBuildings,
+  isClickedBuildings,
+  toggleClickedPeople,
+  isClickedPeople,
 }) {
   return (
     <div id="TopOfPageContainer">
@@ -21,24 +29,34 @@ export default function TopOfPageContainer({
       <div className="tabHolder">
         <div className="tab">
           <button
-            className="tablinks"
-            onClick={Buttons.GatherButton}
+            className={`tablinks ${isClickedGather ? "active" : ""}`}
+            onClick={() => {
+              toggleIsClicked();
+              toggleClickedGather();
+            }}
             id="GatherButton"
           >
             Gather
           </button>
           <button
-            className="tablinks"
-            onClick={Buttons.BuildingsButton({
-              BuildingButtonState,
-              setBuildingButtonState,
-            })}
+            className={`tablinks ${isClickedBuildings ? "active" : ""}`}
+            onClick={() => {
+              toggleIsClicked();
+              toggleClickedBuildings();
+            }}
             id="BuildingsButton"
           >
             Buildings
           </button>
           {BuildingData.PeopleButton ? (
-            <button className="tablinks" id="PeopleButton">
+            <button
+              className={`tablinks ${isClickedPeople ? "active" : ""}`}
+              onClick={() => {
+                toggleIsClicked();
+                toggleClickedPeople();
+              }}
+              id="PeopleButton"
+            >
               People
             </button>
           ) : null}
